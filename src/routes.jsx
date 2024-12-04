@@ -6,6 +6,7 @@ import Clientes from "./pages/Clientes";
 import Page404 from "./pages/Page404";
 import Materiais from "./pages/Materiais";
 import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 function AppRoutes() {
   return (
@@ -17,6 +18,7 @@ function AppRoutes() {
         <Route path="/coletas" element={<Coletas />}></Route>
         <Route path="/clientes" element={<Clientes />}></Route>
         <Route path="/materiais" element={<Materiais />}></Route>
+        <Route path="/register" element={<Register />}></Route>
         <Route path="*" element={<Page404 />}></Route>
       </Routes>
     </BrowserRouter>
