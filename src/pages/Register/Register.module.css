@@ -1,10 +1,12 @@
 .register_search {
     display: flex;
     flex-direction: column;
-    width: 40%;
+    width: 100%;
     min-height: 100vh;
     box-shadow: 5px -5px 15px rgba(0, 0, 0, 0.5); /* Removendo a sombra na parte inferior */
     z-index: 1;
+    padding: 1rem;
+    gap: 1.5rem;
 }
 
 
@@ -86,3 +88,33 @@
   .register_button:hover {
     color: #111;
   }
+
+  .select_box {
+    border: 2px solid transparent;
+    width: 15em;
+    height: 2.5em;
+    padding-left: 0.8em;
+    outline: none;
+    background-color: #F3F3F3;
+    border-radius: 10px;
+    font-family: inherit;
+    color: #333; 
+    appearance: none;
+    -webkit-appearance: none; 
+    transition: all 0.5s;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-position: calc(100% - 0.8em) center;
+    background-size: 1em;
+}
+
+.select_box:hover,
+.select_box:focus {
+    border: 2px solid var(--primary);
+    box-shadow: 0px 0px 0px 7px rgba(125, 195, 241, 0.2);
+    background-color: white;
+}
+.select_box option:disabled {
+  color: gray;
+  font-style: italic;
+}

@@ -7,7 +7,7 @@ function Coletas() {
     <>
       <Header />
       <Container>
-        <h2>Joaozin</h2>
+        <h2>Coletas</h2>
       </Container>
       <Footer />
     </>

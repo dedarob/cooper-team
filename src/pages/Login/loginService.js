@@ -8,6 +8,8 @@ export function loginFetch(data, navigate) {
       funcionarioSenha: data.funcionarioSenha,
     })
     .then((response) => {
+      //TODO: MUDAR TRÂNSITO DE TOKEN PARA MÊTODO MAIS SEGURO, ISSO AQUI NÃO PODE IR PARA PROD
+      sessionStorage.setItem("authToken", response.data.token);
       navigate("/home");
     })
 

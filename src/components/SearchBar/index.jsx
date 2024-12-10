@@ -1,81 +1,47 @@
-import React, { useState, useEffect, useRef } from "react";
 import styles from "./SearchBar.module.css";
+import { FaSearch } from "react-icons/fa";
+import axios from "axios";
 
-const SearchBar = () => {
-  const [query, setQuery] = useState("");
-  const [suggestions, setSuggestions] = useState([]);
-  const [showSuggestions, setShowSuggestions] = useState(false);
-  const searchContainerRef = useRef(null);
+const apiPath = "/pessoafisica";
 
-  const fetchSuggestions = (input) => {
-    const mockSuggestions = [
-      `${input} example`,
-      `${input} tutorial`,
-      `${input} documentation`,
-      `how to use ${input}`,
-      `${input} best practices`,
-    ];
-    setSuggestions(mockSuggestions);
-  };
+function searchBarFetch(personName) {
+  axios
+    .get(import.meta.env.VITE_BACKEND_KEY + apiPath, {
+      params: {
+        returnTypes: "idAndUsername",
+        name: personName,
+      },
+      headers: {
+        //TODO: MUDAR TRÂNSITO DE TOKEN PARA MÊTODO MAIS SEGURO, ISSO AQUI NÃO PODE IR PARA PROD
+        Authorization: `Bearer ${sessionStorage.getItem("authToken")}`,
+      },
+    })
+    .then((response) => {
+      console.log("Data:", response.data);
+    })
+    .catch((error) => {
+      console.error("Error fetching data:", error);
+    });
+}
 
-  useEffect(() => {
-    if (query.length > 0) {
-      fetchSuggestions(query);
-      setShowSuggestions(true);
-    } else {
-      setShowSuggestions(false);
-    }
-  }, [query]);
+//TODO: ADICIONAR COOLDOWN OU CACHE PARA PESQUISA, EVITAR REQUESTS DESNECESSÁRIOS
+function searchPerson() {
+  event.preventDefault();
+  const personName = document.querySelector(`.${styles.search_input}`).value;
+  searchBarFetch(personName);
+}
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (
-        searchContainerRef.current &&
-        !searchContainerRef.current.contains(event.target)
-      ) {
-        setShowSuggestions(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
-
-  const handleInputChange = (e) => {
-    setQuery(e.target.value);
-  };
-
-  const handleSuggestionClick = (suggestion) => {
-    setQuery(suggestion);
-    setShowSuggestions(false);
-  };
-
+function SearchBar() {
   return (
-    <div className={styles.search_container} ref={searchContainerRef}>
-      <input
-        type="text"
-        className={styles.search_input}
-        value={query}
-        onChange={handleInputChange}
-        placeholder="Search..."
-      />
-      {showSuggestions && (
-        <ul className={styles.suggestions_container}>
-          {suggestions.map((suggestion, index) => (
-            <li
-              key={index}
-              className={styles.suggestion_item}
-              onClick={() => handleSuggestionClick(suggestion)}
-            >
-              {suggestion}
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
+    <>
+      <form onSubmit={searchPerson} className={styles.search}>
+        <input type="text" className={styles.search_input} />
+        <button type="submit" className={styles.search_button}>
+          <FaSearch />
+        </button>
+      </form>
+    </>
   );
-};
+}
 
 export default SearchBar;
