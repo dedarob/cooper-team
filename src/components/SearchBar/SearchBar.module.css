@@ -35,15 +35,16 @@
 }
 
 .result_list li {
-  padding: 5px 10px; /* Adjust padding for better spacing */
+  padding: 5px 10px; 
   cursor: pointer;
-  display: block; /* Ensure the list item spans the full width */
-  width: 100%; /* Make sure each item takes the full width */
-  transition: background-color 0.2s ease; /* Smooth transition for hover effect */
-  border: 1px solid #ccc; 
+  display: block; 
+  width: 100%; 
+  transition: background-color 0.2s ease; 
+  border: 1px solid #b9b9b9;
+
 }
 
 .result_list li:hover {
-  background-color: rgb(240, 240, 240); /* Highlight on hover */
+  background-color: rgb(240, 240, 240); 
   color: rgb(45, 48, 184);
 }
