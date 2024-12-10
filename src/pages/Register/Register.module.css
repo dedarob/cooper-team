@@ -1,3 +1,16 @@
+.result_list {
+  list-style-type: none; /* Removes the dot in front of each list item */
+  padding: 0; /* Optional: Removes any extra padding around the list */
+}
+
+.result_list li {
+  padding: 5px 0; /* Optional: Adds some space between list items */
+}
+
+.register_search ul {
+  margin-top: 10px; /* Optional: Adds some margin above the list */
+}
+
 .register_search {
     display: flex;
     flex-direction: column;

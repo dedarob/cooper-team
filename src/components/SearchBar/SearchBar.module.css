@@ -26,3 +26,24 @@
 .search_button:active{
   color: blue;
 }
+
+.result_list {
+  list-style-type: none; 
+  padding: 0; 
+  color: rgb(39, 38, 38);
+  
+}
+
+.result_list li {
+  padding: 5px 10px; /* Adjust padding for better spacing */
+  cursor: pointer;
+  display: block; /* Ensure the list item spans the full width */
+  width: 100%; /* Make sure each item takes the full width */
+  transition: background-color 0.2s ease; /* Smooth transition for hover effect */
+  border: 1px solid #ccc; 
+}
+
+.result_list li:hover {
+  background-color: rgb(240, 240, 240); /* Highlight on hover */
+  color: rgb(45, 48, 184);
+}

@@ -1,23 +1,26 @@
-import Footer from "../../components/Footer";
-import Container from "../../components/Container";
-import styles from "./Register.module.css";
 import React, { useState } from "react";
 import { FaAt } from "react-icons/fa";
 import SearchBar from "../../components/SearchBar";
-
-function RegisterHandler({ username, password }) {}
+import styles from "./Register.module.css";
+import Container from "../../components/Container";
+import Footer from "../../components/Footer";
 
 function Register() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [person, setPerson] = useState("");
+
+  const handleSelectPerson = (personName) => {
+    setPerson(personName);
+  };
+
   return (
     <>
       <Container>
         <section className={styles.register_entire}>
           <div className={styles.register_search}>
             <h2>Procure pela pessoa</h2>
-            <SearchBar />
-            <ul></ul>
+            <SearchBar onSelectPerson={handleSelectPerson} />
           </div>
           <div className={styles.register_page}>
             <form action="">
@@ -50,6 +53,8 @@ function Register() {
                   type="text"
                   placeholder="JOAO SILVA"
                   autoComplete="off"
+                  value={person}
+                  onChange={(e) => setPerson(e.target.value)}
                 />
                 <label htmlFor="person">Permissão</label>
                 <select

@@ -1,10 +1,16 @@
-import styles from "./SearchBar.module.css";
+import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import axios from "axios";
+import styles from "./SearchBar.module.css";
 
 const apiPath = "/pessoafisica";
 
-function searchBarFetch(personName) {
+export function searchBarUseState() {
+  const [resultFromSearchBar, setResultFromSearchBar] = useState([]);
+  return [resultFromSearchBar, setResultFromSearchBar];
+}
+
+export function searchBarFetch(personName, setResultFromSearchBar) {
   axios
     .get(import.meta.env.VITE_BACKEND_KEY + apiPath, {
       params: {
@@ -12,35 +18,78 @@ function searchBarFetch(personName) {
         name: personName,
       },
       headers: {
-        //TODO: MUDAR TRÂNSITO DE TOKEN PARA MÊTODO MAIS SEGURO, ISSO AQUI NÃO PODE IR PARA PROD
         Authorization: `Bearer ${sessionStorage.getItem("authToken")}`,
       },
     })
     .then((response) => {
-      console.log("Data:", response.data);
+      setResultFromSearchBar(response.data);
+      console.log(response.data);
     })
     .catch((error) => {
       console.error("Error fetching data:", error);
     });
 }
 
-//TODO: ADICIONAR COOLDOWN OU CACHE PARA PESQUISA, EVITAR REQUESTS DESNECESSÁRIOS
-function searchPerson() {
-  event.preventDefault();
-  const personName = document.querySelector(`.${styles.search_input}`).value;
-  searchBarFetch(personName);
-}
+function SearchBar({ onSelectPerson }) {
+  const [resultFromSearchBar, setResultFromSearchBar] = searchBarUseState();
+  const [searchQuery, setSearchQuery] = useState("");
 
-function SearchBar() {
+  function handleSearchChange(event) {
+    setSearchQuery(event.target.value);
+  }
+
+  function handleSearchSubmit(event) {
+    event.preventDefault();
+    if (searchQuery) {
+      searchBarFetch(searchQuery, setResultFromSearchBar);
+    } else {
+      setResultFromSearchBar([]);
+    }
+  }
+
+  function handleItemClick(personName) {
+    onSelectPerson(personName);
+  }
+
   return (
-    <>
-      <form onSubmit={searchPerson} className={styles.search}>
-        <input type="text" className={styles.search_input} />
+    <div>
+      <form onSubmit={handleSearchSubmit} className={styles.search}>
+        <input
+          type="text"
+          className={styles.search_input}
+          value={searchQuery}
+          onChange={handleSearchChange}
+          placeholder="Digite o nome"
+        />
         <button type="submit" className={styles.search_button}>
           <FaSearch />
         </button>
       </form>
-    </>
+
+      <ul className={styles.result_list}>
+        {resultFromSearchBar.length > 0 ? (
+          resultFromSearchBar.map((item, index) => (
+            <li
+              key={index}
+              onClick={() => handleItemClick(item.pfNome)}
+              className={styles.result_item}
+            >
+              <p>
+                <strong>Nome:</strong> {item.pfNome}
+              </p>
+              <p>
+                <strong>ID:</strong> {item.id}
+              </p>
+              <p>
+                <strong>Código:</strong> {item.cod}
+              </p>
+            </li>
+          ))
+        ) : (
+          <li>Nenhum resultado encontrado</li>
+        )}
+      </ul>
+    </div>
   );
 }
 
