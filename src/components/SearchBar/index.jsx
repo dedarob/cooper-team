@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FaSearch } from "react-icons/fa";
+import { FaSearch, FaTruckLoading } from "react-icons/fa";
 import axios from "axios";
 import styles from "./SearchBar.module.css";
 
@@ -33,6 +33,7 @@ export function searchBarFetch(personName, setResultFromSearchBar) {
 function SearchBar({ onSelectPerson }) {
   const [resultFromSearchBar, setResultFromSearchBar] = searchBarUseState();
   const [searchQuery, setSearchQuery] = useState("");
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
   function handleSearchChange(event) {
     setSearchQuery(event.target.value);
@@ -41,7 +42,12 @@ function SearchBar({ onSelectPerson }) {
   function handleSearchSubmit(event) {
     event.preventDefault();
     if (searchQuery) {
+      setIsButtonDisabled(true);
       searchBarFetch(searchQuery, setResultFromSearchBar);
+
+      setTimeout(() => {
+        setIsButtonDisabled(false);
+      }, 5000);
     } else {
       setResultFromSearchBar([]);
     }
@@ -61,8 +67,18 @@ function SearchBar({ onSelectPerson }) {
           onChange={handleSearchChange}
           placeholder="Digite o nome"
         />
-        <button type="submit" className={styles.search_button}>
-          <FaSearch />
+        <button
+          type="submit"
+          className={styles.search_button}
+          disabled={isButtonDisabled}
+        >
+          <span
+            className={`${styles.icon} ${
+              isButtonDisabled ? styles.icon_loading : ""
+            }`}
+          >
+            {isButtonDisabled ? <FaTruckLoading /> : <FaSearch />}
+          </span>
         </button>
       </form>
 
@@ -78,10 +94,7 @@ function SearchBar({ onSelectPerson }) {
                 <strong>Nome:</strong> {item.pfNome}
               </p>
               <p>
-                <strong>ID:</strong> {item.id}
-              </p>
-              <p>
-                <strong>Código:</strong> {item.cod}
+                <strong>ID/Código:</strong> {item.id}
               </p>
             </li>
           ))
