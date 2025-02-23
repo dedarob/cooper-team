@@ -1,0 +1,33 @@
+.header{
+    width: 100%;
+    height: 80px;
+    background-color: var(--primary);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.header span{
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 5rem;
+}
+
+.header a{
+    text-decoration: none;
+    color: var(--soft-white);
+    padding-inline: 1rem;
+    font-size: 2rem;
+    transition: 0.3s;
+    border-radius: 1.5rem;
+    padding-top: 5px;
+}
+
+.header a:hover{
+    color: var(--primary);
+    background-color: whitesmoke;;
+    
+    border-radius: 3px;
+    
+}
