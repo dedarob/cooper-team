@@ -48,7 +48,11 @@ function Saida() {
         <form onSubmit={handleSubmit} className={styles.form}>
           <label>
             <span>Tipo de Saída:</span>
-            <select value={tipo} onChange={(e) => setTipo(e.target.value)}>
+            <select
+              value={tipo}
+              onChange={(e) => setTipo(e.target.value)}
+              className={styles.selectBox}
+            >
               <option value="material">Material Reciclável</option>
               <option value="dinheiro">Dinheiro</option>
             </select>

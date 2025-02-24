@@ -2,6 +2,7 @@ import axios from "axios";
 const apiPath = "/auth/login";
 
 export function loginFetch(data, navigate) {
+  console.log(import.meta.env.VITE_BACKEND_KEY);
   axios
     .post(import.meta.env.VITE_BACKEND_KEY + apiPath, {
       username: data.username,

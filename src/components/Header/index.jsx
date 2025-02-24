@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styles from "./Header.module.css";
-import { FaHome, FaBook, FaRecycle, FaSignOutAlt } from "react-icons/fa";
+import { FaHome, FaBook, FaRecycle, FaTruck } from "react-icons/fa";
 import { FaPeopleGroup } from "react-icons/fa6";
 import { MdGroupWork } from "react-icons/md";
 
@@ -27,7 +27,7 @@ function Header() {
           <MdGroupWork />
         </Link>
         <Link to="/Saida" aria-label="Sair">
-          <FaSignOutAlt />
+          <FaTruck />
         </Link>
       </nav>
     </header>

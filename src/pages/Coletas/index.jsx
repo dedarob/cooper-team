@@ -1,26 +1,23 @@
 import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import Container from "../../components/Container";
-import styles from "./Coletas.module.css"; // Importando o módulo CSS
+import styles from "./Coletas.module.css";
+import { Link } from "react-router-dom";
 
 function Coletas() {
   const [coletas, setColetas] = useState([]);
-  const [entregador, setEntregador] = useState("");
-  const [material, setMaterial] = useState("");
-  const [quantidade, setQuantidade] = useState("");
-  const [funcionario, setFuncionario] = useState("");
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (entregador && material && quantidade && funcionario) {
-      const novaColeta = { entregador, material, quantidade, funcionario };
-      setColetas([...coletas, novaColeta]);
-      setEntregador("");
-      setMaterial("");
-      setQuantidade("");
-      setFuncionario("");
-    }
+  const onSubmit = (data) => {
+    setColetas([...coletas, data]);
+    reset();
   };
 
   return (
@@ -28,84 +25,72 @@ function Coletas() {
       <Header />
       <Container>
         <h2>Coletas</h2>
-
-        {/* Formulário para registrar coletas */}
-        <form onSubmit={handleSubmit} className={styles.formContainer}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <label>
             <span>Nome do Entregador:</span>
             <input
               type="text"
               placeholder="Digite o nome do entregador"
-              value={entregador}
-              onChange={(e) => setEntregador(e.target.value)}
-              required
+              {...register("entregador", {
+                required: "Este campo é obrigatório",
+              })}
               className={styles.inputField}
             />
+            {errors.entregador && (
+              <p className={styles.error}>{errors.entregador.message}</p>
+            )}
           </label>
           <label>
             <span>Material:</span>
             <input
               type="text"
               placeholder="Digite o material coletado"
-              value={material}
-              onChange={(e) => setMaterial(e.target.value)}
-              required
+              {...register("material", {
+                required: "Este campo é obrigatório",
+              })}
               className={styles.inputField}
             />
+            {errors.material && (
+              <p className={styles.error}>{errors.material.message}</p>
+            )}
           </label>
           <label>
             <span>Quantidade (kg):</span>
             <input
               type="number"
               placeholder="Digite a quantidade (em kg)"
-              value={quantidade}
-              onChange={(e) => setQuantidade(e.target.value)}
-              required
-              min="0.1"
-              step="0.1"
+              {...register("quantidade", {
+                required: "Este campo é obrigatório",
+                min: { value: 0.1, message: "O valor mínimo é 0.1" },
+                valueAsNumber: true,
+              })}
               className={styles.inputField}
             />
+            {errors.quantidade && (
+              <p className={styles.error}>{errors.quantidade.message}</p>
+            )}
           </label>
           <label>
             <span>Funcionário que Recebeu:</span>
             <input
               type="text"
               placeholder="Digite o nome do funcionário"
-              value={funcionario}
-              onChange={(e) => setFuncionario(e.target.value)}
-              required
+              {...register("funcionario", {
+                required: "Este campo é obrigatório",
+              })}
               className={styles.inputField}
             />
-          </label>
-          <button type="submit" className={styles.submitButton}>Adicionar Coleta</button>
-        </form>
-
-        {/* Tabela para exibir as coletas */}
-        <table>
-          <thead>
-            <tr>
-              <th>Entregador</th>
-              <th>Material</th>
-              <th>Quantidade (kg)</th>
-              <th>Funcionário que Recebeu</th>
-            </tr>
-          </thead>
-          <tbody>
-            {coletas.map((coleta, index) => (
-              <tr key={index}>
-                <td>{coleta.entregador}</td>
-                <td>{coleta.material}</td>
-                <td>{coleta.quantidade}</td>
-                <td>{coleta.funcionario}</td>
-              </tr>
-            ))}
-            {coletas.length === 0 && (
-              <tr>
-                <td colSpan="4">Nenhuma coleta registrada</td>
-              </tr>
+            {errors.funcionario && (
+              <p className={styles.error}>{errors.funcionario.message}</p>
             )}
-          </tbody>
-        </table>
+          </label>
+          <button type="submit" className={styles.submitButton}>
+            Adicionar Coleta
+          </button>
+          <Link to="/historico-coletas" className={styles.toHistoricoLink}>
+            Ver Histórico de Coletas
+          </Link>
+        </form>
       </Container>
       <Footer />
     </>

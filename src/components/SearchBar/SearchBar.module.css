@@ -12,19 +12,20 @@
 }
 
 .search_button{
-  background-color: white;
+  background-color: rgb(9, 82, 9);
   font-size: 1.4rem;
   border: none;
   transition: 0.3s;
 }
 
 .search_button:hover{
-  color: rgb(88, 176, 206);
+  color: rgb(233, 233, 233);
   cursor: pointer;
+  background-color: rgb(1, 116, 20);
 }
 
 .search_button:active{
-  color: blue;
+  color: rgb(141, 230, 129);
 }
 
 .result_list {
@@ -46,5 +47,5 @@
 
 .result_list li:hover {
   background-color: rgb(240, 240, 240); 
-  color: rgb(45, 48, 184);
+  color: rgb(36, 216, 45);
 }

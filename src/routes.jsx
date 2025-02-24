@@ -8,6 +8,7 @@ import Materiais from "./pages/Materiais";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Saida from "./pages/Saida";
+import HistoricoColetas from "./pages/HistoricoColetas";
 
 function AppRoutes() {
   return (
@@ -22,7 +23,7 @@ function AppRoutes() {
         <Route path="/register" element={<Register />}></Route>
         <Route path="/Saida" element={<Saida />}></Route>
         <Route path="*" element={<Page404 />}></Route>
-        
+        <Route path="/historico-coletas" element={<HistoricoColetas />}></Route>
       </Routes>
     </BrowserRouter>
   );

@@ -21,7 +21,7 @@
 
 .icon{
     font-size: 3rem;
-    color: var(--secondary);
+    color: var(--primary);
     transition: 0.3s;
 }
 
