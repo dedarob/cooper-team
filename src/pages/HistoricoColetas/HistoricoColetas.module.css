@@ -1,0 +1,23 @@
+.historico_coletas_pagina{
+    display: flex;
+    justify-content: space-around;
+    padding: 1rem;
+    flex-direction: column;
+}
+
+.around_botoes_acao{
+    display: flex;
+    flex-direction: row;
+    margin: 1rem;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+.icon_trash{
+    background-color: red;
+    transition: 0.3s;
+}
+
+.icon_trash:hover{
+    background-color: rgb(151, 5, 5);
+}

@@ -1,0 +1,85 @@
+.hero {
+  display: flex;
+  justify-content: space-between; /* Garante o espaço entre texto e imagem */
+  align-items: center; /* Alinha verticalmente no centro */
+  padding: 5rem 10rem; /* Ajusta o espaçamento interno */
+  background-color: aliceblue; /* Fundo claro */
+  gap: 2rem; /* Espaço entre texto e imagem */
+  height: 100vh; /* Preenche a altura da tela */
+}
+
+.content {
+  max-width: 50%; /* Ajuste conforme necessário */
+  text-align: left; 
+  margin: 0; 
+}
+
+.content h1 {
+  font-size: 3rem;
+  color: #2e7d32;
+}
+
+.content p {
+  font-size: 1.2rem;
+  margin: 1rem 0 2rem;
+  color: #4f4f4f;
+}
+
+.firstButton {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+
+  border-radius: 5px;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: background 0.3s ease, transform 0.2s ease;
+  background: #388e3c;
+  color: #fff;
+}
+
+.firstButton:hover {
+  background: #2e7d32;
+}
+
+.heroImage {
+  width: 100%; /* Ajusta a largura da imagem */
+  max-width: 400px; /* Limita a largura máxima */
+  border-radius: 5px;
+}
+
+/* Seção de características */
+.features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin: 3rem 0;
+}
+
+.featureCard {
+  background: #fff;
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.featureCard:hover {
+  transform: translateY(-10px);
+}
+
+.featureCard img {
+  width: 60px;
+  margin-bottom: 1rem;
+}
+
+.featureCard h2 {
+  font-size: 1.5rem;
+  color: #2e7d32;
+  margin-bottom: 1rem;
+}
+
+.featureCard p {
+  color: #616161;
+  font-size: 1rem;
+}
