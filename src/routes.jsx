@@ -9,10 +9,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Saida from "./pages/Saida";
 import HistoricoColetas from "./pages/HistoricoColetas";
-<<<<<<< HEAD
 import HistoricoSaidas from "./pages/HistoricoSaidas"
-=======
->>>>>>> 6bf3992774e1a6fda286f68ed8fe64a3bf41e9ce
 
 function AppRoutes() {
   return (
@@ -28,10 +25,7 @@ function AppRoutes() {
         <Route path="/Saida" element={<Saida />}></Route>
         <Route path="*" element={<Page404 />}></Route>
         <Route path="/historico-coletas" element={<HistoricoColetas />}></Route>
-<<<<<<< HEAD
         <Route path="/historico-saidas" element={<HistoricoSaidas />}></Route>
-=======
->>>>>>> 6bf3992774e1a6fda286f68ed8fe64a3bf41e9ce
       </Routes>
     </BrowserRouter>
   );

@@ -42,14 +42,19 @@ function Coletas() {
           </label>
           <label>
             <span>Material:</span>
-            <input
-              type="text"
-              placeholder="Digite o material coletado"
-              {...register("material", {
-                required: "Este campo é obrigatório",
-              })}
-              className={styles.inputField}
-            />
+            <select
+              className={styles.selectBox}
+              value={tipoPessoa}
+              onChange={handleSelectChange}
+              id="tipoPessoa"
+              name="tipoPessoa"
+            >
+                            <option value="DEFAULT" disabled>
+                              Selecione uma opção
+                            </option>
+                            <option value="fisica">Física</option>
+                            <option value="juridica">Jurídica</option>
+                          </select>
             {errors.material && (
               <p className={styles.error}>{errors.material.message}</p>
             )}

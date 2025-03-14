@@ -3,10 +3,7 @@ import styles from "./Saida.module.css";
 import Container from "../../components/Container";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
-<<<<<<< HEAD
 import { Link } from "react-router-dom";
-=======
->>>>>>> 6bf3992774e1a6fda286f68ed8fe64a3bf41e9ce
 
 function Saida() {
   const [saidas, setSaidas] = useState([]);
@@ -102,54 +99,12 @@ function Saida() {
           <button type="submit" className={styles.submitButton}>
             Registrar Saída
           </button>
-<<<<<<< HEAD
           <Link to="/historico-saidas" className={styles.toHistoricoLink}>
             Ver Histórico de Saidas
           </Link>
         </form>
 
       
-=======
-        </form>
-
-        {/* Tabela de Saídas */}
-        <h3 className={styles.subtitle}>Saídas Registradas</h3>
-        <table className={styles.table}>
-          <thead>
-            <tr>
-              <th>Tipo</th>
-              <th>Descrição</th>
-              <th>Quantidade</th>
-              <th>Valor</th>
-              <th>Ação</th>
-            </tr>
-          </thead>
-          <tbody>
-            {saidas.length > 0 ? (
-              saidas.map((saida) => (
-                <tr key={saida.id}>
-                  <td>{saida.tipo === "material" ? "Material" : "Dinheiro"}</td>
-                  <td>{saida.descricao}</td>
-                  <td>{saida.quantidade}</td>
-                  <td>{saida.valor}</td>
-                  <td>
-                    <button
-                      className={styles.removeButton}
-                      onClick={() => removerSaida(saida.id)}
-                    >
-                      Remover
-                    </button>
-                  </td>
-                </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan="5">Nenhuma saída registrada.</td>
-              </tr>
-            )}
-          </tbody>
-        </table>
->>>>>>> 6bf3992774e1a6fda286f68ed8fe64a3bf41e9ce
       </Container>
       <Footer />
     </>

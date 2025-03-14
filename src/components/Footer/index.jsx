@@ -4,9 +4,9 @@ function Footer() {
   return (
     <footer className={styles.footer}>
       <p> Cooperativa de Bocaiuva - 2025</p>
-      <a href="https://github.com/dedarob">GitHub</a>
-      <a href="https://www.linkedin.com/in/roberto-euclides-4b571b248/">
-        LinkedIN
+      <a href="https://github.com/dedarob">Whatsapp</a>
+      <a href="https://www.instagram.com/cooperverdebrasil/">
+      Instagram
       </a>
     </footer>
   );
