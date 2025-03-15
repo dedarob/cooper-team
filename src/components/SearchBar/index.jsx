@@ -30,8 +30,8 @@ export function searchBarFetch(personName, setResultFromSearchBar) {
     });
 }
 
-function SearchBar({ onSelectPerson }) {
-  const [resultFromSearchBar, setResultFromSearchBar] = searchBarUseState();
+function SearchBar({ onSelectPerson, searchType }) {
+  const [resultFromSearchBar, setResultFromSearchBar] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
@@ -53,8 +53,12 @@ function SearchBar({ onSelectPerson }) {
     }
   }
 
-  function handleItemClick(personName) {
-    onSelectPerson(personName);
+  function handleItemClick(item) {
+    if (searchType === "entregador" || searchType === "funcionario") {
+      onSelectPerson(item.id);
+    } else {
+      onSelectPerson(item.pfNome);
+    }
   }
 
   return (
@@ -87,7 +91,7 @@ function SearchBar({ onSelectPerson }) {
           resultFromSearchBar.map((item, index) => (
             <li
               key={index}
-              onClick={() => handleItemClick(item.pfNome)}
+              onClick={() => handleItemClick(item)}
               className={styles.result_item}
             >
               <p>

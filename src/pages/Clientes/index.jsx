@@ -26,7 +26,7 @@ function Clientes() {
       <Container>
         <section className={styles.clientesPage}>
           <div className={styles.clientesForm}>
-            <h2>Cadastro de Clientes</h2>
+            <h2>Cadastro de Pessoas</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
               <label htmlFor="tipoPessoa">Tipo de Pessoa</label>
               <select

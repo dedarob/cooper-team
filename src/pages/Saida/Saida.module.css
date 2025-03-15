@@ -1,4 +1,4 @@
-.selectBox {
+select{
     width: 100%;
     height: 2.5em;
     padding: 0.5em;
@@ -8,7 +8,7 @@
     transition: all 0.3s;
   }
   
-  .selectBox:focus {
+ select focus {
     border-color: var(--primary);
     background-color: white;
     box-shadow: 0px 0px 0px 5px rgba(125, 195, 241, 0.2);
